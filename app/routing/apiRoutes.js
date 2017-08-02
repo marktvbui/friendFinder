@@ -7,6 +7,9 @@ module.exports = function(app) {
   });
 
   app.post('/api/friends', function (req, res) {
+    // var answers = req.body['answers[]'];
+    // var name = req.body.name;
+    // var photo = req.body.photo;
     console.log(req.body);
     friendData.push(req.body);
     res.json(friendData);
