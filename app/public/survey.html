@@ -98,12 +98,18 @@
         // Grab the URL of the website
         var currentURL = window.location.origin;
         // AJAX post the data to the friends API.
-        $.post(currentURL + "/api/friends", userData, function(data) {
+        $.ajax({
+          url: currentURL+'/api/friends',
+          method: "POST",
+          contentType: 'application/json',
+          data: JSON.stringify(userData)
+        }).done(function(res){
+        // $.post(currentURL + "/api/friends", userData, function(data) {
           // Grab the result from the AJAX post so that the best match's name and photo are displayed. for now, only returns single user in api
           console.log(userData);
-          console.log(data);
-          $("#matchName").text(data.name);
-          $('#matchImg').attr("src", data.photo);
+          console.log(res);
+          $("#matchName").text(res.name);
+          $('#matchImg').attr("src", res.photo);
 
           // Show the modal with the best match
           $("#resultsModal").modal('toggle');
