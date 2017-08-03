@@ -30,10 +30,11 @@
       <br>
       <br>
       <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
-   Submit</button>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>Submit</button>
 
       <hr>
+      <a href="/api/friends">API Friends Link</a> | <a href="https://github.com/marktvbui/friendFinder" target="_blank">Github Link</a>
+      <br>
   </div>
 </div>
 
@@ -58,9 +59,9 @@
 
     </div>
   </div>
-  <a href="/api/friends">API Friends Link</a> | <a href="https://github.com/marktvbui/friendFinder" target="_blank">Github Link</a>
 
-  <script type="text/javascript">
+
+<script type="text/javascript">
   $('.dropdown-toggle').dropdown();
   displayQuestions();
     // Capture the form inputs
@@ -152,28 +153,28 @@
 
       for (var i = 0; i < questions.length; i++) {
         var $select = $('<select></select>');
+        $select.append("<option value='' selected='selected'></option>");
+        $select.append("<option value='1'>1 (Strongly Disagree) </option>");
         var $option;
-        for (var j = 0; j < 6; j++) {
+        for (var j = 2; j < 5; j++) {
           $option = $('<option value="' + j + '">' + j + '</option>');
-        // if (j == default) {
-            $option.attr('selected');
-        // }
-        $select.append($option);
+          $option.attr('selected');
+          $select.append($option);
         }
+        $select.append("<option value='5'>5 (Strongly Agree) </option>");
+
         $select.attr('id', 'q' + i + ' answers');
         $select.addClass('questionSelect');
         var count = i + 1;
         var $newDiv = $("<div class='dropdown'>");
         $newDiv.append("<h3><strong> Question " + count + "</strong></h3>");
         $newDiv.append("<h4>" + questions[i] + "</h4>");
-        $newDiv.append('<li>'+ 'Strongly Disagree' + '</li>');
         $newDiv.append($select);
-        $newDiv.append('<li>' + 'Strong Agree' + '</li>');
         $('#questions').append($newDiv);
       }
 
     };
-  </script>
+</script>
 
 </body>
 </html>
