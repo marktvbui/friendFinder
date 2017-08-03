@@ -96,6 +96,7 @@
           photo: $("#photo").val(),
           answers: answerArray
         }
+        console.log(userData);
         // Grab the URL of the website
         var currentURL = window.location.origin;
         // AJAX post the data to the friends API.
@@ -107,6 +108,7 @@
         }).done(function(res){
         // $.post(currentURL + "/api/friends", userData, function(data) {
           // Grab the result from the AJAX post so that the best match's name and photo are displayed. for now, only returns single user in api
+          console.log(res);
           $("#matchName").text(res.name);
           $('#matchImg').attr("src", res.photo);
 

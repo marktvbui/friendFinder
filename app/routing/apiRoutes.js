@@ -7,20 +7,19 @@ module.exports = function(app) {
   });
 
   app.post('/api/friends', function (req, res) {
-    friendData.push(req.body);
-    var answers = req.body;
+    // friendData.push(req.body);
+    var friend = req.body;
     var differenceArray = [];
     //looping through each object in the friendsArray
     for (var j = 0; j < friendData.length; j++) {
       var difference = 0;
       // within each friend, we are getting the difference in answer scores
-      for (var i = 0; i < answers.length; i++){
-        difference += Math.abs( parseInt(friendData[j].answers[i]) - parseInt(answers[i]) );
+      for (var i = 0; i < friend.answers.length; i++){
+        difference += Math.abs(parseInt(friendData[j].answers[i]) - parseInt(friend.answers[i]));
       }
       // pushing the scores into the differenceArray
       differenceArray.push(difference);
     };
-
     var index = 0;
     var value = differenceArray[0];
     // looping through array finding the lowest score
