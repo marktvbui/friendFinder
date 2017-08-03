@@ -11,16 +11,29 @@ module.exports = function(app) {
       var answer = data.answers
       user.push(name, answer);
       console.log(user);
+      return user;
     })
   });
   app.post('/api/friends', function (req, res) {
-    // var answers = req.body['answers[]'];
-    // var name = req.body.name;
-    // var photo = req.body.photo;
-    console.log(req.body);
-    friendData.push(req.body);
-    res.json(friendData);
-
+    var answers = req.body['answers[]'];
+    var differenceArray = [];
+    for (var j = 0; j < friendData.length; j++) {
+      var difference = 0;
+      for (var i = 0; i < answers.length; i++){
+        difference += Math.abs( parseInt(friendData[j].answers[i]) - parseInt(answers[i]) );
+      }
+      differenceArray.push(difference);
+    };
+    console.log(differenceArray);
+    var index = 0;
+    var value = differenceArray[0];
+    for (var x = 0; x < differenceArray.length; x++) {
+      if (differenceArray[x] < value) {
+        value = differenceArray[x];
+        index = x;
+      }
+    }
+    res.json(friendData[index]);
   });
 
 }
